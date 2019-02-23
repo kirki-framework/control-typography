@@ -13,6 +13,7 @@ namespace Kirki\Control;
 
 use Kirki\Core\Kirki;
 use Kirki\Control\Base;
+use Kirki\Modules\Webfonts\Google;
 
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
@@ -53,6 +54,7 @@ class Typography extends Base {
 				'kirki-script',
 				'jquery',
 				'customize-base',
+				'kirki-dynamic-control',
 			],
 			KIRKI_VERSION,
 			false
@@ -93,7 +95,7 @@ class Typography extends Base {
 			}
 		}
 
-		$this->json['show_variants'] = ( true === Kirki_Fonts_Google::$force_load_all_variants ) ? false : true;
+		$this->json['show_variants'] = ( true === Google::$force_load_all_variants ) ? false : true;
 	}
 
 	/**
