@@ -1,4 +1,4 @@
-/* global kirkiL10n, kirki */
+/* global kirkiTypographyControlL10n, kirki, console */
 wp.customize.controlConstructor['kirki-typography'] = wp.customize.kirkiDynamicControl.extend( {
 
 	initKirkiControl: function() {
@@ -136,24 +136,24 @@ wp.customize.controlConstructor['kirki-typography'] = wp.customize.kirkiDynamicC
 		// Combine forces and build the final data.
 		data = jQuery.extend( {}, controlFontFamilies, {
 			default: {
-				text: kirkiL10n.defaultCSSValues,
+				text: kirkiTypographyControlL10n.defaultCSSValues,
 				children: [
-					{ id: '', text: kirkiL10n.defaultBrowserFamily },
+					{ id: '', text: kirkiTypographyControlL10n.defaultBrowserFamily },
 					{ id: 'initial', text: 'initial' },
 					{ id: 'inherit', text: 'inherit' }
 				]
 			},
 			standard: {
-				text: kirkiL10n.standardFonts,
+				text: kirkiTypographyControlL10n.standardFonts,
 				children: standardFonts
 			},
 			google: {
-				text: kirkiL10n.googleFonts,
+				text: kirkiTypographyControlL10n.googleFonts,
 				children: googleFonts
 			}
 		} );
 
-		if ( kirkiL10n.isScriptDebug ) {
+		if ( kirkiTypographyControlL10n.isScriptDebug ) {
 			console.info( 'Kirki Debug: Font families for control "' + control.id + '":' );
 			console.info( data );
 		}
@@ -268,7 +268,7 @@ wp.customize.controlConstructor['kirki-typography'] = wp.customize.kirkiDynamicC
 				variants = control.params.choices.fonts.variants[ fontFamily ];
 			}
 		}
-		if ( kirkiL10n.isScriptDebug ) {
+		if ( kirkiTypographyControlL10n.isScriptDebug ) {
 			console.info( 'Kirki Debug: Font variants for font-family "' + fontFamily + '":' );
 			console.info( variants );
 		}

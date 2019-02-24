@@ -60,6 +60,18 @@ class Typography extends Base {
 			KIRKI_VERSION,
 			false
 		);
+		wp_localize_script(
+			'kirki-control-typography',
+			'kirkiTypographyControlL10n',
+			array(
+				'isScriptDebug'        => ( defined( 'SCRIPT_DEBUG' ) && true === SCRIPT_DEBUG ),
+				'standardFonts'        => esc_html__( 'Standard Fonts', 'kirki' ),
+				'googleFonts'          => esc_html__( 'Google Fonts', 'kirki' ),
+				'defaultCSSValues'     => esc_html__( 'CSS Defaults', 'kirki' ),
+				'defaultBrowserFamily' => esc_html__( 'Default Browser Font-Family', 'kirki' ),
+			)
+		);
+
 
 		// Enqueue the style.
 		wp_enqueue_style(
