@@ -87,7 +87,6 @@ class Typography extends Base {
 			'kirki-control-select',
 			"$select_url/assets/scripts/control.js",
 			[
-				'kirki-script',
 				'jquery',
 				'customize-base',
 				'selectWoo',
@@ -114,7 +113,6 @@ class Typography extends Base {
 			'kirki-control-typography',
 			"$typography_url/assets/scripts/control.js",
 			[
-				'kirki-script',
 				'jquery',
 				'customize-base',
 				'kirki-dynamic-control',
