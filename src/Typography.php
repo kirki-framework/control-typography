@@ -72,6 +72,38 @@ class Typography extends Base {
 			false
 		);
 
+		$select_url = apply_filters(
+			'kirki_package_url_control_select',
+			Kirki::$url . 'vendor/kirki-framework/control-select/src'
+		);
+		$select_url = untrailingslashit( $url );
+
+		// Enqueue selectWoo.
+		wp_enqueue_script( 'selectWoo', "$select_url/assets/scripts/selectWoo/js/selectWoo.full.js", array( 'jquery' ), '1.0.1', true );
+		wp_enqueue_style( 'selectWoo', "$select_url/assets/scripts/selectWoo/css/selectWoo.css", array(), '1.0.1' );
+		
+		// Enqueue the script.
+		wp_enqueue_script(
+			'kirki-control-select',
+			"$select_url/assets/scripts/control.js",
+			[
+				'kirki-script',
+				'jquery',
+				'customize-base',
+				'selectWoo',
+			],
+			KIRKI_VERSION,
+			false
+		);
+
+		// Enqueue the style.
+		wp_enqueue_style(
+			'kirki-control-select-style',
+			"$select_url/assets/styles/style.css",
+			[],
+			KIRKI_VERSION
+		);
+
 		$typography_url = apply_filters(
 			'kirki_package_url_control_typography',
 			trailingslashit( Kirki::$url ) . 'vendor/kirki-framework/control-typography/src'
