@@ -167,7 +167,7 @@ wp.customize.controlConstructor['kirki-typography'] = wp.customize.kirkiDynamicC
 
 		// Set the initial value.
 		if ( value['font-family'] || '' === value['font-family'] ) {
-			value['font-family'] = kirki.util.parseHtmlEntities( value['font-family'].replace( /'/g, '"' ) );
+			value['font-family'] = control.kirkiParseHtmlEntities( value['font-family'].replace( /'/g, '"' ) );
 			fontSelect.val( value['font-family'] ).trigger( 'change' );
 		}
 
@@ -407,6 +407,22 @@ wp.customize.controlConstructor['kirki-typography'] = wp.customize.kirkiDynamicC
 			google: googleFonts,
 			standard: standardFonts
 		};
+	},
+
+	/**
+	 * Parses HTML Entities.
+	 *
+	 * @since 3.0.34
+	 * @param {string} str - The string we want to parse.
+	 * @returns {string}
+	 */
+	kirkiParseHtmlEntities: function( str ) {
+		var parser = new DOMParser(),
+			dom    = parser.parseFromString(
+				'<!doctype html><body>' + str, 'text/html'
+			);
+
+		return dom.body.textContent;
 	},
 
 	/**
