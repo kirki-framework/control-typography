@@ -41,7 +41,38 @@ class Typography extends Base {
 	public function enqueue() {
 		parent::enqueue();
 
-		$url = apply_filters(
+		$color_url = apply_filters(
+			'kirki_package_url_control_color',
+			trailingslashit( Kirki::$url ) . 'vendor/kirki-framework/control-color/src'
+		);
+
+		wp_enqueue_script(
+			'wp-color-picker-alpha',
+			"$color_url/assets/scripts/wp-color-picker-alpha.js",
+			[
+				'wp-color-picker'
+			],
+			KIRKI_VERSION,
+			true
+		);
+
+		wp_enqueue_style( 'wp-color-picker' );
+
+		// Enqueue the script.
+		wp_enqueue_script(
+			'kirki-control-color',
+			"$color_url/assets/scripts/control.js",
+			[
+				'jquery',
+				'customize-base',
+				'wp-color-picker-alpha',
+				'kirki-dynamic-control',
+			],
+			KIRKI_VERSION,
+			false
+		);
+
+		$typography_url = apply_filters(
 			'kirki_package_url_control_typography',
 			trailingslashit( Kirki::$url ) . 'vendor/kirki-framework/control-typography/src'
 		);
@@ -49,7 +80,7 @@ class Typography extends Base {
 		// Enqueue the control script.
 		wp_enqueue_script(
 			'kirki-control-typography',
-			"$url/assets/scripts/control.js",
+			"$typography_url/assets/scripts/control.js",
 			[
 				'kirki-script',
 				'jquery',
@@ -76,7 +107,7 @@ class Typography extends Base {
 		// Enqueue the style.
 		wp_enqueue_style(
 			'kirki-control-typography-style',
-			"$url/assets/styles/style.css",
+			"$typography_url/assets/styles/style.css",
 			[],
 			KIRKI_VERSION
 		);
