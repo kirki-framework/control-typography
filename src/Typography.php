@@ -46,7 +46,7 @@ class Typography extends Base {
 			trailingslashit( Kirki::$url ) . 'vendor/kirki-framework/control-typography/src'
 		);
 
-		// Enqueue the script.
+		// Enqueue the control script.
 		wp_enqueue_script(
 			'kirki-control-typography',
 			"$url/assets/scripts/control.js",
@@ -55,6 +55,7 @@ class Typography extends Base {
 				'jquery',
 				'customize-base',
 				'kirki-dynamic-control',
+				'kirki-webfonts',
 			],
 			KIRKI_VERSION,
 			false
