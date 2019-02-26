@@ -76,7 +76,7 @@ class Typography extends Base {
 			'kirki_package_url_control_select',
 			trailingslashit( Kirki::$url ) . 'vendor/kirki-framework/control-select/src'
 		);
-		$select_url = untrailingslashit( $url );
+		$select_url = untrailingslashit( $select_url );
 
 		// Enqueue selectWoo.
 		wp_enqueue_script( 'selectWoo', "$select_url/assets/scripts/selectWoo/js/selectWoo.full.js", array( 'jquery' ), '1.0.1', true );
