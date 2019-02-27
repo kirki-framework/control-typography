@@ -14,3 +14,5 @@ add_action(
         class_alias( 'Kirki\Control\Typography', 'Kirki_Control_Typography' );
     }
 );
+
+class_alias( 'Kirki\Field\Typography', 'Kirki_Field_Typography' );
