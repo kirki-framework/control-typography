@@ -189,7 +189,7 @@ class Typography extends Field {
 					}
 					break;
 				case 'color':
-					$value['color'] = '' === $value['color'] ? '' : ariColor::newColor( $val )->toCSS( 'hex' );
+					$value['color'] = '' === $value['color'] ? '' : \ariColor::newColor( $val )->toCSS( 'hex' );
 					break;
 			}
 		}
