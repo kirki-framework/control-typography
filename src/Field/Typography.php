@@ -23,6 +23,29 @@ use Kirki\GoogleFonts;
 class Typography extends Field {
 
 	/**
+	 * Has the glogal gfonts var been added already?
+	 *
+	 * @static
+	 * @access private
+	 * @since 1.0
+	 * @var bool
+	 */
+	private static $gfonts_var_added = false;
+
+	/**
+	 * An array of typography controls.
+	 *
+	 * This is used by the typography script for any custom logic
+	 * that has to be applied to typography controls.
+	 *
+	 * @static
+	 * @access private
+	 * @since 1.0
+	 * @var array
+	 */
+	private static $typography_controls = [];
+
+	/**
 	 * The class constructor.
 	 * Parses and sanitizes all field arguments.
 	 * Then it adds the field to Kirki::$fields.
@@ -35,7 +58,15 @@ class Typography extends Field {
 	 */
 	public function __construct( $config_id = 'global', $args = [] ) {
 
+		self::$typography_controls[] = $args['settings'];
+
+		$this->add_main_field( $config_id, $args );
+		$this->add_sub_fields( $config_id, $args );
+
 		add_action( 'customize_controls_enqueue_scripts', [ $this, 'enqueue_scripts' ] );
+	}
+
+	private function add_main_field( $config_id, $args ) {
 
 		/**
 		 * Add a hidden field, the label & description.
@@ -47,14 +78,19 @@ class Typography extends Field {
 					'type'              => 'kirki-generic',
 					'sanitize_callback' => isset( $args['sanitize_callback'] ) ? $args['sanitize_callback'] : [ __CLASS__, 'sanitize' ],
 					'choices'           => [
-						'type' => 'hidden',
+						'type'        => 'hidden',
+						'parent_type' => 'kirki-typography',
 					],
 				],
 				$args
 			)
 		);
+	}
+
+	private function add_sub_fields( $config_id, $args ) {
 
 		$args['parent_setting'] = $args['settings'];
+		$args['output']         = [];
 		$args['wrapper_atts']   = [
 			'data-kirki-parent-control-type' => 'kirki-typography',
 		];
@@ -125,13 +161,19 @@ class Typography extends Field {
 					[
 						'label'       => esc_html__( 'Font Weight', 'kirki' ),
 						'description' => '',
-						'type'        => 'number',
+						'type'        => 'radio-buttonset',
 						'settings'    => $args['settings'] . '[font-weight]',
 						'default'     => $font_weight,
 						'choices'     => [
-							'min'  => 100,
-							'max'  => 900,
-							'step' => 100,
+							'100' => '100',
+							'200' => '200',
+							'300' => '300',
+							'400' => '400',
+							'500' => '500',
+							'600' => '600',
+							'700' => '700',
+							'800' => '800',
+							'900' => '900'
 						],
 						'output'      => $this->get_subfield_output( $args, 'font-weight' ),
 					],
@@ -457,6 +499,17 @@ class Typography extends Field {
 
 	public function enqueue_scripts() {
 		wp_enqueue_style( 'kirki-control-typography-style', URL::get_from_path( dirname( __DIR__ ) . '/assets/styles/style.css' ), [], false );
+
+		wp_enqueue_script( 'kirki-typography', URL::get_from_path( dirname( __DIR__ ) . '/assets/scripts/script.js' ), [], false );
+		wp_localize_script( 'kirki-typography', 'kirkiTypographyControls', self::$typography_controls );
+
+		if ( ! self::$gfonts_var_added ) {
+			echo '<script>kirkiGoogleFonts=';
+			$google  = new GoogleFonts();
+			$google->print_googlefonts_json( false );
+			echo ';</script>';
+			self::$gfonts_var_added = true;
+		}
 	}
 
 	public function get_subfield_output( $field, $property ) {
