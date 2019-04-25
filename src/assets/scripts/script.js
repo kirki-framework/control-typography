@@ -59,7 +59,6 @@ jQuery( document ).ready( function() {
 		kirkiTypographyCompositeControlFontProperties( id );
 		wp.customize( id, function( value ) {
 			value.bind( function( newval ) {
-				console.log( newval );
 				kirkiTypographyCompositeControlFontProperties( id, newval );
 			} );
 		} );
