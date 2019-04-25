@@ -22,6 +22,14 @@ var kirkiTypographyCompositeControlFontProperties = function( id, value ) {
 				fontWeights.push( parseInt( variant ) );
 			}
 		});
+
+		_.each( [ 100, 200, 300, 400, 500, 600, 700, 800, 900 ], function( weight ) {
+			if ( -1 !== fontWeights.indexOf( weight ) ) {
+				fontWeightControl.container.find( '[for="' + id + '[font-weight]' + weight + '"]' ).show();
+			} else {
+				fontWeightControl.container.find( '[for="' + id + '[font-weight]' + weight + '"]' ).hide();
+			}
+		});
 	}
 
 	wp.hooks.addAction(
