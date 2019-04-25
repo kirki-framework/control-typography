@@ -95,6 +95,10 @@ class Typography extends Field {
 			'data-kirki-parent-control-type' => 'kirki-typography',
 		];
 
+		if ( isset( $args['transport'] ) && 'auto' === $args['transport'] ) {
+			$args['transport'] = 'postMessage';
+		}
+
 		/**
 		 * Add font-family selection controls.
 		 * These include font-family, font-weight and font-style.
