@@ -11,7 +11,7 @@
 namespace Kirki\Field;
 
 use Kirki\Core\Field;
-Use Kirki;
+use Kirki;
 use Kirki\URL;
 use Kirki\GoogleFonts;
 
@@ -66,6 +66,15 @@ class Typography extends Field {
 		add_action( 'customize_controls_enqueue_scripts', [ $this, 'enqueue_scripts' ] );
 	}
 
+	/**
+	 * Adds the main field.
+	 *
+	 * @access private
+	 * @since 1.0
+	 * @param string $config_id The config-ID.
+	 * @param array  $args      The field arguments.
+	 * @return void
+	 */
 	private function add_main_field( $config_id, $args ) {
 
 		/**
@@ -87,6 +96,15 @@ class Typography extends Field {
 		);
 	}
 
+	/**
+	 * Adds sub-fields.
+	 *
+	 * @access private
+	 * @since 1.0
+	 * @param string $config_id The config-ID.
+	 * @param array  $args      The field arguments.
+	 * @return void
+	 */
 	private function add_sub_fields( $config_id, $args ) {
 
 		$args['parent_setting'] = $args['settings'];
@@ -111,7 +129,7 @@ class Typography extends Field {
 			$sorting   = 'alpha';
 			$max_fonts = 9999;
 			if ( isset( $args['choices'] ) && isset( $args['choices']['fonts'] ) && isset( $args['choices']['fonts']['google'] ) ) {
-				if ( isset( $args['choices']['fonts']['google'][0] ) && in_array( $args['choices']['fonts']['google'][0], [ 'alpha', 'popularity', 'trending' ] ) ) {
+				if ( isset( $args['choices']['fonts']['google'][0] ) && in_array( $args['choices']['fonts']['google'][0], [ 'alpha', 'popularity', 'trending' ], true ) ) {
 					$sorting = $args['choices']['fonts']['google'][0];
 				}
 				if ( isset( $args['choices']['fonts']['google'][1] ) && is_int( $args['choices']['fonts']['google'][1] ) ) {
@@ -168,24 +186,30 @@ class Typography extends Field {
 						'settings'    => $args['settings'] . '[font-weight]',
 						'default'     => $font_weight,
 						'choices'     => [
-							100 => '100',
-							200 => '200',
-							300 => '300',
-							400 => '400',
-							500 => '500',
-							600 => '600',
-							700 => '700',
-							800 => '800',
-							900 => '900',
-							// 100 => esc_html__( '100 - Thin', 'kirki' ),
-							// 200 => esc_html__( '200 - Extra Light, Ultra Light', 'kirki' ),
-							// 300 => esc_html__( '300 - Light', 'kirki' ),
-							// 400 => esc_html__( '400 - Normal, Book, Regular', 'kirki' ),
-							// 500 => esc_html__( '500 - Medium', 'kirki' ),
-							// 600 => esc_html__( '600 - Semi Bold, Demi Bold', 'kirki' ),
-							// 700 => esc_html__( '700 - Bold', 'kirki' ),
-							// 800 => esc_html__( '800 - Extra Bold, Ultra Bold', 'kirki' ),
-							// 900 => esc_html__( '900 - Black, Heavy', 'kirki' ),
+							'100' => '100',
+							'200' => '200',
+							'300' => '300',
+							'400' => '400',
+							'500' => '500',
+							'600' => '600',
+							'700' => '700',
+							'800' => '800',
+							'900' => '900',
+							/**
+							 * WIP - Still thinking about the best way to present these.
+							 * Below is the same array we have above, but with proper names
+							 * in case we decide to switch to some other control-type.
+							 *
+							'100' => esc_html__( '100 - Thin', 'kirki' ),
+							'200' => esc_html__( '200 - Extra Light, Ultra Light', 'kirki' ),
+							'300' => esc_html__( '300 - Light', 'kirki' ),
+							'400' => esc_html__( '400 - Normal, Book, Regular', 'kirki' ),
+							'500' => esc_html__( '500 - Medium', 'kirki' ),
+							'600' => esc_html__( '600 - Semi Bold, Demi Bold', 'kirki' ),
+							'700' => esc_html__( '700 - Bold', 'kirki' ),
+							'800' => esc_html__( '800 - Extra Bold, Ultra Bold', 'kirki' ),
+							'900' => esc_html__( '900 - Black, Heavy', 'kirki' ),
+							*/
 						],
 					],
 					$args
@@ -505,14 +529,14 @@ class Typography extends Field {
 	 * @return void
 	 */
 	public function enqueue_scripts() {
-		wp_enqueue_style( 'kirki-control-typography-style', URL::get_from_path( dirname( __DIR__ ) . '/assets/styles/style.css' ), [], false );
+		wp_enqueue_style( 'kirki-control-typography-style', URL::get_from_path( dirname( __DIR__ ) . '/assets/styles/style.css' ), [], '1.0' );
 
-		wp_enqueue_script( 'kirki-typography', URL::get_from_path( dirname( __DIR__ ) . '/assets/scripts/script.js' ), [], false );
+		wp_enqueue_script( 'kirki-typography', URL::get_from_path( dirname( __DIR__ ) . '/assets/scripts/script.js' ), [], '1.0', true );
 		wp_localize_script( 'kirki-typography', 'kirkiTypographyControls', self::$typography_controls );
 
 		if ( ! self::$gfonts_var_added ) {
 			echo '<script>kirkiGoogleFonts=';
-			$google  = new GoogleFonts();
+			$google = new GoogleFonts();
 			$google->print_googlefonts_json( false );
 			echo ';</script>';
 			self::$gfonts_var_added = true;
