@@ -14,6 +14,7 @@ use Kirki\Core\Field;
 use Kirki;
 use Kirki\URL;
 use Kirki\GoogleFonts;
+use Kirki\Modules\Webfonts\Fonts;
 
 /**
  * Field overrides.
@@ -144,6 +145,12 @@ class Typography extends Field {
 				]
 			);
 
+			$standard_fonts = Fonts::get_standard_fonts();
+			$std_fonts      = [];
+			foreach ( $standard_fonts as $font ) {
+				$std_fonts[ $font['stack'] ] = $font['label'];
+			}
+
 			$args['wrapper_atts']['kirki-typography-subcontrol-type'] = 'font-family';
 
 			/**
@@ -158,7 +165,11 @@ class Typography extends Field {
 						'description' => '',
 						'settings'    => $args['settings'] . '[font-family]',
 						'choices'     => [
-							'google' => [
+							'standard' => [
+								esc_html__( 'Standard Fonts', 'kirki' ),
+								$std_fonts,
+							],
+							'google'   => [
 								esc_html__( 'Google Fonts', 'kirki' ),
 								array_combine( array_values( $g_fonts ), array_values( $g_fonts ) ),
 							],
