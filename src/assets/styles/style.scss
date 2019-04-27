@@ -10,14 +10,8 @@ li {
     &[kirki-typography-subcontrol-type="margin-top"] label,
     &[kirki-typography-subcontrol-type="margin-bottom"] label {
       display: flex !important;
-      flex-wrap: wrap-reverse;
       justify-content: space-between;
       align-items: center;
-
-      .customize-control-notifications-container {
-        order: 1;
-        width: 100%;
-      }
 
       input,
       .select2-container {

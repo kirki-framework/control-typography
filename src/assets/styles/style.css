@@ -3,13 +3,8 @@ li[data-kirki-parent-control-type=kirki-typography] {
 }
 li[data-kirki-parent-control-type=kirki-typography][kirki-typography-subcontrol-type=font-size] label, li[data-kirki-parent-control-type=kirki-typography][kirki-typography-subcontrol-type=line-height] label, li[data-kirki-parent-control-type=kirki-typography][kirki-typography-subcontrol-type=letter-spacing] label, li[data-kirki-parent-control-type=kirki-typography][kirki-typography-subcontrol-type=word-spacing] label, li[data-kirki-parent-control-type=kirki-typography][kirki-typography-subcontrol-type=text-decoration] label, li[data-kirki-parent-control-type=kirki-typography][kirki-typography-subcontrol-type=margin-top] label, li[data-kirki-parent-control-type=kirki-typography][kirki-typography-subcontrol-type=margin-bottom] label {
   display: flex !important;
-  flex-wrap: wrap-reverse;
   justify-content: space-between;
   align-items: center;
-}
-li[data-kirki-parent-control-type=kirki-typography][kirki-typography-subcontrol-type=font-size] label .customize-control-notifications-container, li[data-kirki-parent-control-type=kirki-typography][kirki-typography-subcontrol-type=line-height] label .customize-control-notifications-container, li[data-kirki-parent-control-type=kirki-typography][kirki-typography-subcontrol-type=letter-spacing] label .customize-control-notifications-container, li[data-kirki-parent-control-type=kirki-typography][kirki-typography-subcontrol-type=word-spacing] label .customize-control-notifications-container, li[data-kirki-parent-control-type=kirki-typography][kirki-typography-subcontrol-type=text-decoration] label .customize-control-notifications-container, li[data-kirki-parent-control-type=kirki-typography][kirki-typography-subcontrol-type=margin-top] label .customize-control-notifications-container, li[data-kirki-parent-control-type=kirki-typography][kirki-typography-subcontrol-type=margin-bottom] label .customize-control-notifications-container {
-  order: 1;
-  width: 100%;
 }
 li[data-kirki-parent-control-type=kirki-typography][kirki-typography-subcontrol-type=font-size] label input,
 li[data-kirki-parent-control-type=kirki-typography][kirki-typography-subcontrol-type=font-size] label .select2-container, li[data-kirki-parent-control-type=kirki-typography][kirki-typography-subcontrol-type=line-height] label input,
