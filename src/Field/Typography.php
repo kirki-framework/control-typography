@@ -10,7 +10,7 @@
 
 namespace Kirki\Field;
 
-use Kirki\Core\Field;
+use Kirki\Field;
 use Kirki;
 use Kirki\URL;
 use Kirki\GoogleFonts;
@@ -47,19 +47,18 @@ class Typography extends Field {
 	private static $typography_controls = [];
 
 	/**
-	 * The class constructor.
-	 * Parses and sanitizes all field arguments.
-	 * Then it adds the field to Kirki::$fields.
+	 * Extra logic for the field.
+	 *
+	 * Adds all sub-fields.
 	 *
 	 * @access public
-	 * @param string $config_id    The ID of the config we want to use.
-	 *                             Defaults to "global".
-	 *                             Configs are handled by the Kirki\Core\Config class.
-	 * @param array  $args         The arguments of the field.
+	 * @param array $args The arguments of the field.
 	 */
-	public function __construct( $config_id = 'global', $args = [] ) {
+	public function init( $args = [] ) {
 
 		self::$typography_controls[] = $args['settings'];
+
+		$config_id = isset( $args['config_id'] ) ? $args['config_id'] : 'global';
 
 		$this->add_main_field( $config_id, $args );
 		$this->add_sub_fields( $config_id, $args );
