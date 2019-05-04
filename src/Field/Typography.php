@@ -58,7 +58,7 @@ class Typography extends Field {
 
 		self::$typography_controls[] = $args['settings'];
 
-		$config_id = isset( $args['config_id'] ) ? $args['config_id'] : 'global';
+		$config_id = isset( $args['kirki_config'] ) ? $args['kirki_config'] : 'global';
 
 		$this->add_main_field( $config_id, $args );
 		$this->add_sub_fields( $config_id, $args );
