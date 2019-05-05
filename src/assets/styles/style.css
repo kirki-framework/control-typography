@@ -44,6 +44,7 @@ li[data-kirki-parent-control-type=kirki-typography][kirki-typography-subcontrol-
   display: flex;
   justify-content: center;
   background-color: #00a0d2;
+  height: 6px;
 }
 li[data-kirki-parent-control-type=kirki-typography][kirki-typography-subcontrol-type=font-weight] div.buttonset label .indicator {
   display: block;
@@ -58,12 +59,13 @@ li[data-kirki-parent-control-type=kirki-typography][kirki-typography-subcontrol-
   font-weight: 700;
   width: 100%;
   text-align: center;
+  transition: all 0.2s;
 }
 li[data-kirki-parent-control-type=kirki-typography][kirki-typography-subcontrol-type=font-weight] div.buttonset label:nth-child(2n) .sublabel {
-  top: -1.5em;
+  top: -17px;
 }
 li[data-kirki-parent-control-type=kirki-typography][kirki-typography-subcontrol-type=font-weight] div.buttonset label:nth-child(4n) .sublabel {
-  top: 1.5em;
+  top: 11px;
 }
 li[data-kirki-parent-control-type=kirki-typography][kirki-typography-subcontrol-type=font-weight] div.buttonset .switch-input:checked + .switch-label {
   background: linear-gradient(to right, #00a0d2 0%, #00a0d2 50%, rgba(0, 0, 0, 0.1) 51%, rgba(0, 0, 0, 0.1) 100%);
@@ -73,17 +75,24 @@ li[data-kirki-parent-control-type=kirki-typography][kirki-typography-subcontrol-
   position: absolute;
   display: block;
   width: 6px;
-  height: 1.5em;
+  height: 14;
   background: #00a0d2;
-  top: -0.25em;
+  top: -4px;
   left: calc(50% - 3px);
   border-radius: 3px;
 }
 li[data-kirki-parent-control-type=kirki-typography][kirki-typography-subcontrol-type=font-weight] div.buttonset .switch-input:checked + .switch-label .sublabel {
   color: #00a0d2;
+  font-size: 15px;
 }
 li[data-kirki-parent-control-type=kirki-typography][kirki-typography-subcontrol-type=font-weight] div.buttonset .switch-input:checked + .switch-label ~ .switch-label {
   background: rgba(0, 0, 0, 0.1);
+}
+li[data-kirki-parent-control-type=kirki-typography][kirki-typography-subcontrol-type=font-weight] div.buttonset .switch-input:checked + .switch-label:nth-child(2n) .sublabel {
+  top: -21px;
+}
+li[data-kirki-parent-control-type=kirki-typography][kirki-typography-subcontrol-type=font-weight] div.buttonset .switch-input:checked + .switch-label:nth-child(4n) .sublabel {
+  top: 15px;
 }
 li[data-kirki-parent-control-type=kirki-typography][kirki-typography-subcontrol-type=font-weight] div.buttonset .switch-input[disabled=true] + .switch-label .sublabel, li[data-kirki-parent-control-type=kirki-typography][kirki-typography-subcontrol-type=font-weight] div.buttonset .switch-input[disabled=disabled] + .switch-label .sublabel {
   color: #c4c4c4;

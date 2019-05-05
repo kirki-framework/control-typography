@@ -55,6 +55,7 @@ li {
           display: flex;
           justify-content: center;
           background-color: #00a0d2;
+          height: 6px;
 
           .indicator {
             display: block;
@@ -70,17 +71,18 @@ li {
             font-weight: 700;
             width: 100%;
             text-align: center;
+            transition: all .2s;
           }
 
           &:nth-child(2n) {
             .sublabel {
-              top: -1.5em;
+              top: -17px;
             }
           }
 
           &:nth-child(4n) {
             .sublabel {
-              top: 1.5em;
+              top: 11px;
             }
           }
         }
@@ -95,9 +97,9 @@ li {
                 position: absolute;
                 display: block;
                 width: 6px;
-                height: 1.5em;
+                height: 14;
                 background: #00a0d2;
-                top: -0.25em;
+                top: -4px;
                 left: calc(50% - 3px);
                 border-radius: 3px;
               }
@@ -105,11 +107,23 @@ li {
 
             .sublabel {
               color: #00a0d2;
+              font-size: 15px;
             }
 
             ~.switch-label {
               background: rgba(0, 0, 0, .1);
             }
+            &:nth-child(2n) {
+              .sublabel {
+                top: -21px;
+              }
+            }
+  
+            &:nth-child(4n) {
+              .sublabel {
+                top: 15px;
+              }
+            }  
           }
 
           &[disabled=true],
