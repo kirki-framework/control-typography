@@ -67,11 +67,7 @@ function kirkiTypographyCompositeControlFontProperties( id, value ) {
 		function( controlInit ) {
 			if ( id + '[font-weight]' === controlInit.id ) {
 				_.each( [ 100, 200, 300, 400, 500, 600, 700, 800, 900 ], function( weight ) {
-					if ( -1 !== fontWeights.indexOf( weight ) ) {
-						fontWeightControl.container.find( '[for="' + id + '[font-weight]' + weight + '"]' ).show();
-					} else {
-						fontWeightControl.container.find( '[for="' + id + '[font-weight]' + weight + '"]' ).hide();
-					}
+					fontWeightControl.container.find( '[value=' + weight + ']' ).attr( 'disabled', -1 === fontWeights.indexOf( weight ) )
 				});		
 			}
 		}
