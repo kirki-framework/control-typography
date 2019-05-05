@@ -50,11 +50,7 @@ function kirkiTypographyCompositeControlFontProperties( id, value ) {
 		 * Hide/show font-weight options depending on which are available for this font-family.
 		 */
 		_.each( [ 100, 200, 300, 400, 500, 600, 700, 800, 900 ], function( weight ) {
-			if ( -1 !== fontWeights.indexOf( weight ) ) {
-				fontWeightControl.container.find( '[for="' + id + '[font-weight]' + weight + '"]' ).show();
-			} else {
-				fontWeightControl.container.find( '[for="' + id + '[font-weight]' + weight + '"]' ).hide();
-			}
+			fontWeightControl.container.find( '[value=' + weight + ']' ).attr( 'disabled', -1 === fontWeights.indexOf( weight ) )
 		});
 
 		/**
