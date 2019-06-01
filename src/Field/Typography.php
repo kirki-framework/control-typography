@@ -526,10 +526,8 @@ class Typography extends Field {
 		wp_localize_script( 'kirki-typography', 'kirkiTypographyControls', self::$typography_controls );
 
 		if ( ! self::$gfonts_var_added ) {
-			echo '<script>kirkiGoogleFonts=';
 			$google = new GoogleFonts();
-			echo esc_html( wp_json_encode( $google->get_array() ) );
-			echo ';</script>';
+			wp_localize_script( 'kirki-typography', 'kirkiGoogleFonts', $google->get_array() );
 			self::$gfonts_var_added = true;
 		}
 	}
