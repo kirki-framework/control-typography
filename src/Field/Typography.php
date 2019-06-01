@@ -528,7 +528,7 @@ class Typography extends Field {
 		if ( ! self::$gfonts_var_added ) {
 			echo '<script>kirkiGoogleFonts=';
 			$google = new GoogleFonts();
-			$google->print_googlefonts_json( false );
+			echo esc_html( $google->get_array() );
 			echo ';</script>';
 			self::$gfonts_var_added = true;
 		}
