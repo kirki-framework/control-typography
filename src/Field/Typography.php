@@ -60,14 +60,13 @@ class Typography extends Field {
 
 		$config_id = isset( $args['kirki_config'] ) ? $args['kirki_config'] : 'global';
 
-		$this->add_main_field( $config_id, $args );
 		$this->add_sub_fields( $config_id, $args );
 
 		add_action( 'customize_controls_enqueue_scripts', [ $this, 'enqueue_scripts' ] );
 	}
 
 	/**
-	 * Adds the main field.
+	 * Add sub-fields.
 	 *
 	 * @access private
 	 * @since 1.0
@@ -75,7 +74,7 @@ class Typography extends Field {
 	 * @param array  $args      The field arguments.
 	 * @return void
 	 */
-	private function add_main_field( $config_id, $args ) {
+	private function add_sub_fields( $config_id, $args ) {
 
 		/**
 		 * Add a hidden field, the label & description.
@@ -94,18 +93,6 @@ class Typography extends Field {
 				$args
 			)
 		);
-	}
-
-	/**
-	 * Adds sub-fields.
-	 *
-	 * @access private
-	 * @since 1.0
-	 * @param string $config_id The config-ID.
-	 * @param array  $args      The field arguments.
-	 * @return void
-	 */
-	private function add_sub_fields( $config_id, $args ) {
 
 		$args['parent_setting'] = $args['settings'];
 		$args['output']         = [];
