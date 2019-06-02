@@ -58,9 +58,7 @@ class Typography extends Field {
 
 		self::$typography_controls[] = $args['settings'];
 
-		$config_id = isset( $args['kirki_config'] ) ? $args['kirki_config'] : 'global';
-
-		$this->add_sub_fields( $config_id, $args );
+		$this->add_sub_fields( $args );
 
 		add_action( 'customize_controls_enqueue_scripts', [ $this, 'enqueue_scripts' ] );
 	}
@@ -70,17 +68,17 @@ class Typography extends Field {
 	 *
 	 * @access private
 	 * @since 1.0
-	 * @param string $config_id The config-ID.
-	 * @param array  $args      The field arguments.
+	 * @param array  $args The field arguments.
 	 * @return void
 	 */
-	private function add_sub_fields( $config_id, $args ) {
+	private function add_sub_fields( $args ) {
+
+		$args['kirki_config'] = isset( $args['kirki_config'] ) ? $args['kirki_config'] : 'global';
 
 		/**
 		 * Add a hidden field, the label & description.
 		 */
-		Kirki::add_field(
-			$config_id,
+		new \Kirki\Field\Generic(
 			wp_parse_args(
 				[
 					'type'              => 'kirki-generic',
@@ -142,8 +140,7 @@ class Typography extends Field {
 			/**
 			 * Add font-family control.
 			 */
-			Kirki::add_field(
-				$config_id,
+			new \Kirki\Field\Select(
 				wp_parse_args(
 					[
 						'type'        => 'select',
@@ -173,8 +170,8 @@ class Typography extends Field {
 			$font_weight = isset( $args['default']['font-weight'] ) ? $args['default']['font-weight'] : $font_weight;
 			$font_weight = 'regular' === $font_weight || 'italic' === $font_weight ? 400 : (int) $font_weight;
 			$args['wrapper_atts']['kirki-typography-subcontrol-type'] = 'font-weight';
-			Kirki::add_field(
-				$config_id,
+
+			new \Kirki\Field\Radio_Buttonset(
 				wp_parse_args(
 					[
 						'label'       => esc_html__( 'Font Weight', 'kirki' ),
@@ -204,8 +201,8 @@ class Typography extends Field {
 			$is_italic = isset( $args['default']['variant'] ) && false !== strpos( $args['default']['variant'], 'i' );
 			$is_italic = isset( $args['default']['font-style'] ) && 'italic' === $args['default']['font-style'];
 			$args['wrapper_atts']['kirki-typography-subcontrol-type'] = 'font-style';
-			Kirki::add_field(
-				$config_id,
+
+			new \Kirki\Field\Radio_Buttonset(
 				wp_parse_args(
 					[
 						'label'       => esc_html__( 'Font Style', 'kirki' ),
@@ -228,8 +225,8 @@ class Typography extends Field {
 		 */
 		if ( isset( $args['default']['font-size'] ) ) {
 			$args['wrapper_atts']['kirki-typography-subcontrol-type'] = 'font-size';
-			Kirki::add_field(
-				$config_id,
+
+			new \Kirki\Field\Dimension(
 				wp_parse_args(
 					[
 						'label'       => esc_html__( 'Font Size', 'kirki' ),
@@ -248,8 +245,8 @@ class Typography extends Field {
 		 */
 		if ( isset( $args['default']['line-height'] ) ) {
 			$args['wrapper_atts']['kirki-typography-subcontrol-type'] = 'line-height';
-			Kirki::add_field(
-				$config_id,
+
+			new \Kirki\Field\Dimension(
 				wp_parse_args(
 					[
 						'label'       => esc_html__( 'Line Height', 'kirki' ),
@@ -265,8 +262,8 @@ class Typography extends Field {
 
 		if ( isset( $args['default']['letter-spacing'] ) ) {
 			$args['wrapper_atts']['kirki-typography-subcontrol-type'] = 'letter-spacing';
-			Kirki::add_field(
-				$config_id,
+
+			new \Kirki\Field\Dimension(
 				wp_parse_args(
 					[
 						'label'       => esc_html__( 'Letter Spacing', 'kirki' ),
@@ -282,8 +279,8 @@ class Typography extends Field {
 
 		if ( isset( $args['default']['word-spacing'] ) ) {
 			$args['wrapper_atts']['kirki-typography-subcontrol-type'] = 'word-spacing';
-			Kirki::add_field(
-				$config_id,
+
+			new \Kirki\Field\Dimension(
 				wp_parse_args(
 					[
 						'label'       => esc_html__( 'Word Spacing', 'kirki' ),
@@ -299,8 +296,8 @@ class Typography extends Field {
 
 		if ( isset( $args['default']['text-decoration'] ) ) {
 			$args['wrapper_atts']['kirki-typography-subcontrol-type'] = 'text-decoration';
-			Kirki::add_field(
-				$config_id,
+
+			new \Kirki\Field\Radio_Buttonset(
 				wp_parse_args(
 					[
 						'label'       => esc_html__( 'Text Decoration', 'kirki' ),
@@ -320,8 +317,8 @@ class Typography extends Field {
 
 		if ( isset( $args['default']['text-transform'] ) ) {
 			$args['wrapper_atts']['kirki-typography-subcontrol-type'] = 'text-transform';
-			Kirki::add_field(
-				$config_id,
+
+			new \Kirki\Field\Radio_Buttonset(
 				wp_parse_args(
 					[
 						'label'       => esc_html__( 'Text Transform', 'kirki' ),
@@ -343,8 +340,8 @@ class Typography extends Field {
 
 		if ( isset( $args['default']['text-align'] ) ) {
 			$args['wrapper_atts']['kirki-typography-subcontrol-type'] = 'text-align';
-			Kirki::add_field(
-				$config_id,
+
+			new \Kirki\Field\Radio_Buttonset(
 				wp_parse_args(
 					[
 						'label'       => esc_html__( 'Text Align', 'kirki' ),
@@ -367,8 +364,8 @@ class Typography extends Field {
 
 		if ( isset( $args['default']['margin-top'] ) ) {
 			$args['wrapper_atts']['kirki-typography-subcontrol-type'] = 'margin-top';
-			Kirki::add_field(
-				$config_id,
+
+			new \Kirki\Field\Dimension(
 				wp_parse_args(
 					[
 						'label'       => esc_html__( 'Top Margin', 'kirki' ),
@@ -384,8 +381,8 @@ class Typography extends Field {
 
 		if ( isset( $args['default']['margin-bottom'] ) ) {
 			$args['wrapper_atts']['kirki-typography-subcontrol-type'] = 'margin-bottom';
-			Kirki::add_field(
-				$config_id,
+
+			new \Kirki\Field\Dimension(
 				wp_parse_args(
 					[
 						'label'       => esc_html__( 'Bottom Margin', 'kirki' ),
@@ -401,8 +398,8 @@ class Typography extends Field {
 
 		if ( isset( $args['default']['color'] ) ) {
 			$args['wrapper_atts']['kirki-typography-subcontrol-type'] = 'color';
-			Kirki::add_field(
-				$config_id,
+
+			new \Kirki\Field\Color(
 				wp_parse_args(
 					[
 						'label'       => '',
@@ -416,8 +413,7 @@ class Typography extends Field {
 			);
 		}
 
-		Kirki::add_field(
-			$config_id,
+		new \Kirki\Field\Custom(
 			[
 				'label'           => '',
 				'description'     => '',
