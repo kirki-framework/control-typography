@@ -68,7 +68,7 @@ class Typography extends Field {
 	 *
 	 * @access private
 	 * @since 1.0
-	 * @param array  $args The field arguments.
+	 * @param array $args The field arguments.
 	 * @return void
 	 */
 	private function add_sub_fields( $args ) {
