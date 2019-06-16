@@ -29,6 +29,10 @@ function kirkiTypographyCompositeControlFontProperties( id, value ) {
 				fontWeights.push( parseInt( variant ) );
 			}
 
+			if ( ! hasItalics ) {
+				fontStyleControl.setting.set( 'normal' );
+			}
+
 			// if ( hasItalics && control.active() ) {
 			// 	fontStyleControl.activate();
 			// } else {
