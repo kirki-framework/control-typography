@@ -173,7 +173,7 @@ class Typography extends Field {
 			/**
 			 * Add font-family control.
 			 */
-			new \Kirki\Field\Select(
+			new \Kirki\Field\ReactSelect(
 				wp_parse_args(
 					[
 						'label'       => esc_html__( 'Font Family', 'kirki' ),
@@ -197,7 +197,7 @@ class Typography extends Field {
 			$font_weight = 'regular' === $font_weight || 'italic' === $font_weight ? 400 : (int) $font_weight;
 			$args['wrapper_atts']['kirki-typography-subcontrol-type'] = 'font-weight';
 
-			new \Kirki\Field\Select(
+			new \Kirki\Field\ReactSelect(
 				wp_parse_args(
 					[
 						'label'       => esc_html__( 'Font Weight', 'kirki' ),
@@ -353,7 +353,7 @@ class Typography extends Field {
 		if ( isset( $args['default']['text-transform'] ) ) {
 			$args['wrapper_atts']['kirki-typography-subcontrol-type'] = 'text-transform';
 
-			new \Kirki\Field\Select(
+			new \Kirki\Field\ReactSelect(
 				wp_parse_args(
 					[
 						'label'       => esc_html__( 'Text Transform', 'kirki' ),
@@ -377,7 +377,7 @@ class Typography extends Field {
 		if ( isset( $args['default']['text-align'] ) ) {
 			$args['wrapper_atts']['kirki-typography-subcontrol-type'] = 'text-align';
 
-			new \Kirki\Field\Select(
+			new \Kirki\Field\ReactSelect(
 				wp_parse_args(
 					[
 						'label'       => esc_html__( 'Text Align', 'kirki' ),
