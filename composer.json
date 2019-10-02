@@ -19,7 +19,7 @@
     "kirki-framework/control-color": "*",
     "kirki-framework/control-custom": "*",
     "kirki-framework/control-generic": "*",
-    "kirki-framework/control-select": "*",
+    "kirki-framework/control-react-select": "*",
     "kirki-framework/module-webfonts": "*"
   },
   "autoload": {
