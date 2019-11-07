@@ -624,8 +624,10 @@ class Typography extends Field {
 		}
 		// Unset input_attrs of all other choices
 		foreach ( $args['choices'] as $id => $set ) {
-			if ( $id !== $choice ) {
+			if ( $id !== $choice && isset( $args[ $setting ][ $id ] ) ) {
 				unset( $args[ $setting ][ $id ] );
+			} else if ( ! isset( $args[ $setting ][ $id ] ) ) {
+				$args[ $setting ] = '';
 			}
 		}
 		return $args[ $setting ];
